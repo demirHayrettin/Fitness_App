@@ -9,5 +9,6 @@ namespace ProjectTask.DAL.Repossitories
 {
     internal class KullaniciRepository : GenericRepository<Kullanici>
     {
+        // Hayrettin Deneme1
     }
 }
