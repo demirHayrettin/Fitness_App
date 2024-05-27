@@ -1,13 +1,11 @@
 ﻿using ProjectTask.DATA;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ProjectTask.DAL.Repossitories
+namespace ProjectTask.DAL.Repositories
 {
-    internal class PorsiyonRepository :GenericRepository<Porsiyon>
+    internal class PorsiyonRepository : GenericRepository<Porsiyon>
     {
+        public PorsiyonRepository(AppDbContext context) : base(context)
+        {
+        }
     }
 }

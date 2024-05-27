@@ -1,17 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ProjectTask.DAL.Mappings;
 using ProjectTask.DATA;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProjectTask.DAL
 {
     public class AppDbContext : DbContext
     {
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+        {
+        }
+
         public DbSet<Besin> Besinler { get; set; }
         public DbSet<Kullanici> Kullanicilar { get; set; }
         public DbSet<Ogun> Ogunler { get; set; }
@@ -19,13 +17,7 @@ namespace ProjectTask.DAL
         public DbSet<Yemek> Yemekler { get; set; }
         public DbSet<YemekKategori> YemekKategorileri { get; set; }
         public DbSet<YemekPlani> YemekPlanlari { get; set; }
-        public DbSet<YemekPlaniOgesi> YemekPlaniOgeleri { get; set; }   
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-
-            optionsBuilder.UseSqlServer("Data Source=E;Initial Catalog=HS15-ProjeDiyetUygulama;Integrated Security=True;TrustServerCertificate=True");
-        }
+        public DbSet<YemekPlaniOgesi> YemekPlaniOgeleri { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -39,8 +31,6 @@ namespace ProjectTask.DAL
             new YemekPlaniOgesiMapping().Configure(modelBuilder.Entity<YemekPlaniOgesi>());
 
             base.OnModelCreating(modelBuilder);
-
         }
-
     }
 }

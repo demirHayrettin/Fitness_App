@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
 
-namespace ProjectTask.DAL.Repossitories
+namespace ProjectTask.DAL.Repositories
 {
-    internal class GenericRepository<TEntity> where TEntity : class, new()
+    public class GenericRepository<TEntity> where TEntity : class, new()
     {
-        public AppDbContext context;
+        private readonly AppDbContext context;
 
-        public GenericRepository()
+        public GenericRepository(AppDbContext context)
         {
-            context = new AppDbContext();
+            this.context = context;
         }
 
         //GetAll
@@ -30,7 +26,6 @@ namespace ProjectTask.DAL.Repossitories
             }
             catch (Exception)
             {
-
                 throw new Exception("Aranılan kayıt bulunamadı");
             }
         }
@@ -39,57 +34,44 @@ namespace ProjectTask.DAL.Repossitories
         public int Add(TEntity entity)
         {
             try
-
             {
                 context.Set<TEntity>().Add(entity);
-
                 return context.SaveChanges();
-
             }
             catch (Exception)
             {
                 throw new Exception("Ekleme işlemi başarısız oldu!");
-
             }
-
         }
+
         // Update
         public int Update(TEntity entity)
         {
             try
             {
                 context.Set<TEntity>().Update(entity);
-
                 return context.SaveChanges();
             }
-
             catch (Exception)
             {
-
                 throw new Exception("Güncelleme işlemi başarısız oldu");
             }
         }
 
         // Delete
-
         public int Delete(int id)
         {
             try
             {
-                //TEntity deleteEntity = context.Set<TEntity>().Find(id);
-
                 TEntity deleteEntity = GetById(id);
-
                 context.Set<TEntity>().Remove(deleteEntity);
                 return context.SaveChanges();
             }
             catch (Exception)
             {
-
                 throw new Exception("Silme işlemi başarısız oldu!");
             }
-
         }
-
     }
 }
+
