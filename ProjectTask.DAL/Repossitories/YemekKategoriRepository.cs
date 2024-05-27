@@ -1,13 +1,11 @@
 ﻿using ProjectTask.DATA;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ProjectTask.DAL.Repossitories
+namespace ProjectTask.DAL.Repositories
 {
-    internal class YemekKategoriRepository:GenericRepository<YemekKategori>
+    public class YemekKategoriRepository : GenericRepository<YemekKategori>
     {
+        public YemekKategoriRepository(AppDbContext context) : base(context)
+        {
+        }
     }
 }

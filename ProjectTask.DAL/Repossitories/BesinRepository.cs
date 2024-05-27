@@ -1,13 +1,11 @@
 ﻿using ProjectTask.DATA;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ProjectTask.DAL.Repossitories
+namespace ProjectTask.DAL.Repositories
 {
-    internal class BesinRepository :GenericRepository<Besin>
+    public class BesinRepository : GenericRepository<Besin>
     {
+        public BesinRepository(AppDbContext context) : base(context)
+        {
+        }
     }
 }
