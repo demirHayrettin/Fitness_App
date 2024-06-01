@@ -23,7 +23,8 @@ namespace ProjectTask.UI
                 services.AddDbContext<AppDbContext>(options =>
                     options.UseSqlServer(connectionString));
 
-                services.AddScoped<Form1>();
+                services.AddScoped<LoginForm>();
+                services.AddScoped<RegisterForm>();
             });
 
             var host = builder.Build();
@@ -33,8 +34,8 @@ namespace ProjectTask.UI
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
-                var form1 = services.GetRequiredService<Form1>();
-                Application.Run(form1);
+                var loginForm = services.GetRequiredService<LoginForm>();
+                Application.Run(loginForm);
             }
         }
     }
